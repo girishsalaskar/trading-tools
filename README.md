@@ -1,10 +1,10 @@
-  Trading Tools body { font-family: Arial, sans-serif; margin: 2em; } h1 { color: #2c3e50; } .tool-list { margin-bottom: 2em; } .tool-item { margin-bottom: 1em; } .readme { background: #f9f9f9; border: 1px solid #ddd; padding: 1em; margin-top: 0.5em; } a { color: #2980b9; text-decoration: none; } a:hover { text-decoration: underline; }
-
 # Trading Tools
 
-## [Available Tools](README.md)
+This repository contains the tools which I've developed as per my need in trading and investing Journey.
 
-[chartink-backtest](./chartink-backtest/README.md)
+## chartink-backtest
+
+The chartink backtesting is the simple streamlit utility which is used to backtest the CSV downloaded from any chartink scanner's backtesting result section. [Click here](./chartink-backtest/README.md) to know more about this tool.
 
 _Guidance: Click 'Show README' to view guidance for chartink-backtest._
 
