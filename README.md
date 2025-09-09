@@ -2,13 +2,10 @@
 
 # Trading Tools
 
-## Available Tools
+## [Available Tools](README.md)
 
-[chartink-backtest](../chartink-backtest/chartink-backtest.py)  
-[Show README](#)
+[chartink-backtest](./chartink-backtest/README.md)
 
 _Guidance: Click 'Show README' to view guidance for chartink-backtest._
 
 © 2025 Trading Tools
-
-// Utility to convert markdown to HTML (basic) function markdownToHtml(md) { // Simple replacements for headings, bold, italics, code, lists return md .replace(/^# (.\*$)/gim, '<h2>$1</h2>') .replace(/^## (.\*$)/gim, '<h3>$1</h3>') .replace(/^### (.\*$)/gim, '<h4>$1</h4>') .replace(/\\\*\\\*(.\*?)\\\*\\\*/gim, '<b>$1</b>') .replace(/\\\*(.\*?)\\\*/gim, '<i>$1</i>') .replace(/\`(\[^\`\]+)\`/gim, '<code>$1</code>') .replace(/^\\s\*\[-\*\] (.\*$)/gim, '<li>$1</li>') .replace(/\\n\\n/gim, '<br><br>'); } // Handle README link clicks const readmeLinks = document.querySelectorAll('.readme-link'); readmeLinks.forEach(link => { link.addEventListener('click', function(e) { e.preventDefault(); const readmePath = this.getAttribute('data-readme'); const readmeDiv = this.parentElement.querySelector('.readme'); fetch(readmePath) .then(response => response.text()) .then(md => { readmeDiv.innerHTML = markdownToHtml(md); }) .catch(() => { readmeDiv.innerHTML = '<em>Could not load README.md</em>'; }); }); });
