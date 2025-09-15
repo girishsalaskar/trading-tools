@@ -116,25 +116,26 @@ if csv_file:
                 sl_price = purchase_price * (1 - sl_pct / 100)
 
                 today_close = hist["Close"].iloc[-1]
-                sl_target_hit, hit_time, trade_return_pct = "None", None, 0
+                sl_target_hit, hit_time = "None", None
+                exit_price = today_close  # default exit = today's close
 
                 for ts, r in hist.iterrows():
                     close_price = r["Close"]
                     if close_price >= target_price:
-                        sl_target_hit, hit_time, trade_return_pct = "Target", ts, target_pct
+                        sl_target_hit, hit_time, exit_price = "Target", ts, close_price
                         break
                     elif close_price <= sl_price:
-                        sl_target_hit, hit_time, trade_return_pct = "SL", ts, -sl_pct
+                        sl_target_hit, hit_time, exit_price = "SL", ts, close_price
                         break
 
-                if sl_target_hit == "None":
-                    trade_return_pct = ((today_close - purchase_price) / purchase_price) * 100
-
+                trade_return_pct = ((exit_price - purchase_price) / purchase_price) * 100
                 shares = capital_per_trade / purchase_price
-                profit_loss = shares * purchase_price * (trade_return_pct / 100)
+                profit_loss = shares * (exit_price - purchase_price)
 
                 equity += profit_loss
-                equity_curve.append(equity / (capital_per_trade * total_trades) * 100 if total_trades > 0 else 100)
+                equity_curve.append(
+                    equity / (capital_per_trade * total_trades) * 100 if total_trades > 0 else 100
+                )
                 absolute_curve.append(equity)
                 trade_returns.append(trade_return_pct)
 
@@ -148,6 +149,7 @@ if csv_file:
                     "Today's Close": round(today_close, 2),
                     "Hit Result": sl_target_hit,
                     "Hit Time": hit_time,
+                    "Exit Price": round(exit_price, 2),
                     "Return %": round(trade_return_pct, 2),
                     "Shares": int(shares),
                     "P&L": round(profit_loss, 2),
