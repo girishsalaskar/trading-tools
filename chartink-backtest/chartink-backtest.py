@@ -180,7 +180,15 @@ if "result_df" in st.session_state:
     result_df = st.session_state["result_df"]
 
     st.subheader("Results Table")
-    st.dataframe(result_df)
+    def highlight_hit(val):
+        if val["Hit Result"] == "Target":
+            return ["background-color: lightgreen; color: black;"] * len(val)
+        elif val["Hit Result"] == "SL":
+            return ["background-color: lightcoral; color: white;"] * len(val)
+        elif val["Hit Result"] == "None":
+            return ["background-color: lightblue; color: black;"] * len(val)
+        return ""
+    st.dataframe(result_df.style.apply(highlight_hit, axis=1))
 
     # Summary
     won_trades = result_df["Hit Result"].value_counts().get("Target", 0)
