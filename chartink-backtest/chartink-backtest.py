@@ -79,6 +79,7 @@ if csv_file:
         st.error("CSV must contain 'symbol' and 'date' columns")
     else:
         df["date"] = pd.to_datetime(df["date"], errors="coerce", infer_datetime_format=True).dt.date
+        print(df["date"])
         today = datetime.today().date()
 
         if st.button("Process"):
