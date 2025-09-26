@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import numpy as np
 
-st.title("Stock SL/Target Backtester (Flexible Timeframe)")
+st.title("Stock SL/Target Backtester (Flexible Timeframe), Developed specifically for chartink backtest CSV")
 
 # --- Inputs ---
 csv_file = st.file_uploader("Upload CSV with 'date' and 'symbol' columns", type=["csv"])
@@ -15,7 +15,7 @@ capital_per_trade = st.number_input("Capital per trade", min_value=100.0, max_va
 sequential_start = st.checkbox("Start balance = Capital × # of trades", value=False)
 
 # Timeframe selection
-interval_map = {"5 min": "5m", "15 min": "15m", "30 min": "30m", "1 hour": "1h", "1 day": "1d"}
+interval_map = {"1 hour": "1h", "1 day": "1d"}
 selected_interval_label = st.selectbox("Select Timeframe", list(interval_map.keys()), index=3)
 selected_interval = interval_map[selected_interval_label]
 
