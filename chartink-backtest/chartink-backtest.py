@@ -78,7 +78,7 @@ if csv_file:
     if "symbol" not in df.columns or "date" not in df.columns:
         st.error("CSV must contain 'symbol' and 'date' columns")
     else:
-        df["date"] = pd.to_datetime(df["date"], errors="coerce", infer_datetime_format=True).dt.date
+        df["date"] = pd.to_datetime(df["date"], dayfirst=True, errors='coerce').dt.date
         today = datetime.today().date()
 
         if st.button("Process"):
