@@ -16,7 +16,7 @@ sequential_start = st.checkbox("Start balance = Capital × # of trades", value=F
 
 # Timeframe selection
 interval_map = {"1 hour": "1h", "1 day": "1d"}
-selected_interval_label = st.selectbox("Select Timeframe", list(interval_map.keys()), index=3)
+selected_interval_label = st.selectbox("Select Timeframe", list(interval_map.keys()))
 selected_interval = interval_map[selected_interval_label]
 
 
