@@ -224,6 +224,22 @@ if "result_df" in st.session_state:
     ax.legend()
     st.pyplot(fig)
 
+    # --- Drawdown curve ---
+    st.subheader("Drawdown Curve (%)")
+
+    equity_curve = np.array(st.session_state["equity_curve"])
+    peaks = np.maximum.accumulate(equity_curve)
+    drawdowns = (equity_curve - peaks) / peaks * 100  # in %
+
+    fig, ax = plt.subplots()
+    ax.plot(drawdowns, color="red", label="Drawdown %")
+    ax.fill_between(range(len(drawdowns)), drawdowns, 0, color="red", alpha=0.3)
+    ax.set_title("Drawdown Curve")
+    ax.set_xlabel("Trade #")
+    ax.set_ylabel("Drawdown (%)")
+    ax.legend()
+    st.pyplot(fig)
+
     # Distribution of returns
     st.subheader("Distribution of Trade Returns (%)")
     fig, ax = plt.subplots()
